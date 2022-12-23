@@ -17,8 +17,6 @@ function getComputerChoiceRandomly() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    computerSelection = getComputerChoiceRandomly()
-    playerSelection = prompt("Choose rock, paper or scissors: ");
     if (playerSelection.toLowerCase() === computerSelection) {
         return "draw";
     } else if (computerSelection === "rock" &&
@@ -36,5 +34,25 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    
+    let countUser = 0;
+    let countComputer = 0;
+    for (let i = 0; i < 5; i++) {
+        let user = prompt("Choose rock, paper or scissors: ");
+        let computer = getComputerChoiceRandomly();
+        if (playRound(user, computer) === "win") {
+            console.log("You won this round!");
+            countUser++;
+        } else if (playRound(user, computer) === "lose") {
+            console.log("You lost this round!");
+            countComputer++;
+        } else {
+            console.log("It's a draw for this one!");
+        }
+    } if (countComputer > countUser) {
+        return "You've lost the game :("
+    } else if (countUser > countComputer) {
+        return "Congrats! You won!"
+    } else {
+        return "It's a draw."
+    }
 }
