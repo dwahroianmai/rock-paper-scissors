@@ -16,3 +16,25 @@ function getComputerChoiceRandomly() {
     }
 }
 
+function playRound(playerSelection, computerSelection) {
+    computerSelection = getComputerChoiceRandomly()
+    playerSelection = prompt("Choose rock, paper or scissors: ");
+    if (playerSelection.toLowerCase() === computerSelection) {
+        return "draw";
+    } else if (computerSelection === "rock" &&
+        playerSelection.toLowerCase() === "paper") {
+        return "win";
+    } else if (computerSelection === "paper" &&
+        playerSelection.toLowerCase() === "scissors") {
+        return "win";
+    } else if (computerSelection === "scissors" &&
+        playerSelection.toLowerCase() === "rock") {
+        return "win";
+    } else {
+        return "lose"
+    }
+}
+
+function game() {
+    
+}
