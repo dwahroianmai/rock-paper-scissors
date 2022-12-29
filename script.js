@@ -5,6 +5,35 @@
     3. function called game, 5 rounds, keeps score
     and reports a winner. */
 
+const para = document.createElement('p');
+para.textContent = "Click on an image to make your choice!";
+para.setAttribute('style', 
+    'color: rgb(107, 76, 54); \
+    font-family: \'Courier New\', \
+    Courier, monospace; \
+    font-size: 24px; \
+    margin-top: 30px;');
+
+const start = document.querySelector('button');
+const body = document.querySelector('body');
+
+start.addEventListener('click', () => {
+    body.insertBefore(para, body.children[2]);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function getComputerChoiceRandomly() {
     let computerChoice = Math.floor(Math.random() * 3 + 1);
     if (computerChoice === 1) {
