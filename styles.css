@@ -1,0 +1,73 @@
+body {
+  background-color: rgb(255, 241, 222);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+h1 {
+  text-align: center;
+  color: rgb(107, 76, 54);
+  font-family:'Courier New', Courier, monospace;
+  font-size: 56px;
+}
+
+.paws {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.paw {
+  height: 400px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 2px solid rgb(107, 76, 54);
+}
+
+.footer {
+  margin-top: auto;
+  border-top: 1px solid rgb(107, 76, 54);
+  width: 100vw;
+  justify-content: center;
+  display: flex;
+
+}
+
+footer {
+  color: rgb(107, 76, 54);
+  font-family: 'Courier New', Courier, monospace;
+  padding-top: 10px;
+}
+
+#start {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+button:hover {
+  background-color: burlywood;
+}
+
+button:active {
+  background-color: rgb(255, 209, 146);
+}
+
+button {
+  background-color: rgb(255, 241, 222);
+  color: rgb(107, 76, 54);
+  font-family: 'Courier New', Courier, monospace;
+  border: 2px solid rgb(107, 76, 54);
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+img:active {
+  box-shadow: 10px 10px burlywood;
+}
