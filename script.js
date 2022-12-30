@@ -5,10 +5,10 @@ const paper = document.getElementById('paper');
 const scissors = document.getElementById('scissors');
 
 // create a paragraph explaining rules
+const paraStart = "Click on an image to make \
+your choice! The winner is the one who \
+gets 5 points first. Good luck :)";
 const para = document.createElement('p');
-para.textContent = "Click on an image to make \
-    your choice! The winner is the one who \
-    gets 5 points first. Good luck :)";
 para.setAttribute('style', 
     'color: rgb(107, 76, 54); \
     font-family: \'Courier New\', \
@@ -18,6 +18,7 @@ para.setAttribute('style',
     text-align: center; \
     max-width: 50vw;');
 
+// create game count
 const gameCount = document.createElement('p');
 gameCount.setAttribute('style', 
     'color: rgb(107, 76, 54); \
@@ -27,45 +28,74 @@ gameCount.setAttribute('style',
     margin-top: 10px; \
     text-align: center;');
 
+//button pressed, game starts
 start.addEventListener('click', () => {
-    body.insertBefore(gameCount, body.children[2]);
-    body.insertBefore(para, body.children[3]);
-    game();
-})
-
-function game() {
+    let userChoice;
+    let computerChoice;
     let userCount = 0;
     let computerCount = 0;
-    for (let i = 1; userCount <= 5 || computerCount <= 5; i++) {
+    gameCount.textContent = `you -> ${userCount}/${computerCount} <- computer`
+    para.textContent = paraStart;
+    body.insertBefore(gameCount, body.children[2]);
+    body.insertBefore(para, body.children[3]);
+    rock.addEventListener('click', (e) => {
+        para.textContent = paraStart;
         gameCount.textContent = `you -> ${userCount}/${computerCount} <- computer`;
-        let computerChoice = getComputerChoiceRandomly();
-        rock.addEventListener('click', (e) => getUserChoice(e.target.id));
-        paper.addEventListener('click', (e) => getUserChoice(e.target.id));
-        scissors.addEventListener('click', (e) => getUserChoice(e.target.id));
-        let userChoice = getUserChoice();
-        if (playRound(userChoice, computerChoice) === "win") {
-            userCount += 1;
-        } else if (playRound(userChoice, computerChoice) === "lose") {
-            computerCount += 1;
-        } 
-    } if (computerCount > userCount) {
-        console.log("oops");
-    } else {
-        console.log("congrats");
-    }
-};
-
-function getUserChoice(id) {
-    if (id === "rock") {
-        return "rock";
-    } else if (id == "paper") {
-        return "paper";
-    } else {
-        return "scissors";
-    }
-};
+        userChoice = e.target.id;
+        computerChoice = getComputerChoiceRandomly();
+        if (userCount !== 5 && computerCount !== 5) {
+            if (playRound(userChoice, computerChoice) == "win") {
+                return userCount += 1;
+            } else if (playRound(userChoice, computerChoice) === "lose") {
+                return computerCount += 1;
+            }
+        } else if (userCount === 5 || computerCount === 5) {
+            finalMessage(userCount, computerCount);
+        }
+    });
+    paper.addEventListener('click', (e) => {
+        para.textContent = paraStart;
+        gameCount.textContent = `you -> ${userCount}/${computerCount} <- computer`;
+        userChoice = e.target.id;
+        computerChoice = getComputerChoiceRandomly();
+        if (userCount !== 5 && computerCount !== 5) {
+            if (playRound(userChoice, computerChoice) == "win") {
+                return userCount += 1;
+            } else if (playRound(userChoice, computerChoice) === "lose") {
+                return computerCount += 1;
+            }
+        } else if (userCount === 5 || computerCount === 5) {
+            finalMessage(userCount, computerCount);
+        }
+    });
+    scissors.addEventListener('click', (e) => {
+        para.textContent = paraStart;
+        gameCount.textContent = `you -> ${userCount}/${computerCount} <- computer`;
+        userChoice = e.target.id;
+        computerChoice = getComputerChoiceRandomly();
+        if (userCount !== 5 && computerCount !== 5) {
+            if (playRound(userChoice, computerChoice) == "win") {
+                return userCount += 1;
+            } else if (playRound(userChoice, computerChoice) === "lose") {
+                return computerCount += 1;
+            }
+        } else if (userCount === 5 || computerCount === 5) {
+            finalMessage(userCount, computerCount);
+        }
+    });
+});
 
 // game functions
+function finalMessage(user, pc) {
+    if (user > pc) {
+        para.textContent = "Congrats! You have won. Press 'start' to play again :)";
+    } else if (pc > user) {
+        para.textContent = "Oops! Looks like you've lost. Press 'start' to play again :)";
+    } else {
+        para.textContent = "Wow, it's a draw! Press 'start' to play again :)";
+    }
+}
+
 function getComputerChoiceRandomly() {
     let computerChoice = Math.floor(Math.random() * 3);
     if (computerChoice === 0) {
@@ -90,6 +120,6 @@ function playRound(playerSelection, computerSelection) {
         playerSelection === "rock") {
         return "win";
     } else {
-        return "lose"
+        return "lose";
     }
 }
